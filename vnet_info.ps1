@@ -1,3 +1,9 @@
+#######################################################################
+#  This script is to get the vnet details from all azure subscription #
+#######################################################################
+#  Created by: Vipul Lende                                           #
+######################################################################
+
 $arrayData = @()
 $subs = Get-AzSubscription
 foreach ($sub in $subs) {
