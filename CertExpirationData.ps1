@@ -2,7 +2,7 @@
 #   This script is to get the list of certificates which are going to     #
 #    expire in next 30 days                                               #
 ###########################################################################
-#Created by: Vipul Lende                                                  #
+#   Created by: Vipul Lende                                               #
 ###########################################################################
 
 
