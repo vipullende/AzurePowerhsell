@@ -5,6 +5,7 @@
 #   Created by: Vipul Lende                                               #
 ###########################################################################
 
+
 $certinfo = @()
 $Certtobexpired =@()
 $list_subscription = Get-AzSubscription
@@ -21,15 +22,16 @@ foreach ($subscription in $list_subscription) {
     $certinfo += Invoke-RestMethod -Uri $url -Headers $header -Method Get  | Select-Object -expand value
     
 }
-
-$Today = ([datetime] (Get-Date -format yyyy-MM-dd)).AddDays(30)
+$days = 30
+$day = ([datetime] (Get-Date -format yyyy-MM-dd)).AddDays($days)
 
 #$Today.GetType()
 $Certificates = $certinfo.properties  | Select-Object expirationTime, distinguishedName  #| Export-Csv -NoTypeInformation ./certificate_info.csv
                                                                                                                        
 foreach ($Certificate in $Certificates) {
-    if ($null -ne $Certificate.expirationTime -and [datetime] $Certificate.expirationTime -le $Today ) {
-        Write-Host "Certificate expire for "  $Certificate.distinguishedName.Split("=").get(1)  " expiry date is "  $Certificate.expirationTime     
+    if ($null -ne $Certificate.expirationTime -and [datetime] $Certificate.expirationTime -le $day ) {
+        Write-Host "Following cerificats are going to expire after" $days
+        Write-Host "Certificate if going to expire for "  $Certificate.distinguishedName.Split("=").get(1)  " and expiry date is "  $Certificate.expirationTime  $days 
        $Certtobexpired += $Certificate
     }   
     $Certtobexpired 
