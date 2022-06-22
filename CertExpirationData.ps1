@@ -75,7 +75,7 @@ if ($null -eq $Certtobexpired.expirationTime) {
         #$body += Get-content VM_Count.html
         $body += "<br><br>"
         $body += "Thanks & Regards <br>"
-        $body += "Cloud Team <br>"
+        $body += " Team <br>"
         Write-Host "send email"
     
         #Sending E-maily
