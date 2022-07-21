@@ -15,7 +15,3 @@ foreach ($sub in $subs) {
 		}	
 	}
 }
-
-# Get-AzDiagnosticSetting -ResourceId "/subscriptions/5d26aadf-bc83-45db-908e-d9f69c2d27b9/resourceGroups/rg_nonpsub_m_pcl_westus2/providers/Microsoft.Network/applicationGateways/agw_nonpsub_m_pcl_002"
-
-# Set-AzDiagnosticSetting -ResourceId "/subscriptions/3a8d651a-33d8-46be-89b8-8cf0436d27dd/resourceGroups/rg_prodsub_p_ato_eastus/providers/Microsoft.KeyVault/vaults/conakeyvault2024" -WorkspaceId $WorkspaceId -EnableLog $true  -Name "test"

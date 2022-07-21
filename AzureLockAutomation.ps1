@@ -8,8 +8,8 @@
 
 #[System.Net.ServicePointManager]::SecurityProtocol = [System.Net.SecurityProtocolType]::Tls12;
 
-$username = "user"
-$password = "pass"
+$username = 'user'
+$password = 'pass'
 
 $secureStringPwd = $password | ConvertTo-SecureString -AsPlainText -Force 
 $creds = New-Object System.Management.Automation.PSCredential -ArgumentList $username, $secureStringPwd
@@ -46,12 +46,12 @@ foreach ($Sub in $subscriptions) {
             if ($null -eq $logs ) {
                 Write-Host $VM.Name 'lock today'
                 $lockvms += $vm
-                # New-AzResourceLock -LockName DeleteLock `
-                # -LockLevel CanNotDelete `
-                # -ResourceGroupName $vm.ResourceGroupName `
-                # -ResourceName $vm.Name `
-                # -ResourceType Microsoft.Network/virtualNetworks `
-                # -Force
+                New-AzResourceLock -LockName DeleteLock `
+                    -LockLevel CanNotDelete `
+                    -ResourceGroupName $vm.ResourceGroupName `
+                    -ResourceName $vm.Name `
+                    -ResourceType Microsoft.Network/virtualNetworks `
+                    -Force
             }
             else {
                 Write-Host $vm.Name 'dont Lock'
