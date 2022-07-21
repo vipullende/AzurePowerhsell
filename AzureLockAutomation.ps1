@@ -6,6 +6,14 @@
 #   Created by: Vipul Lende                                               #
 ###########################################################################
 
+#[System.Net.ServicePointManager]::SecurityProtocol = [System.Net.SecurityProtocolType]::Tls12;
+
+$username = "user"
+$password = "pass"
+
+$secureStringPwd = $password | ConvertTo-SecureString -AsPlainText -Force 
+$creds = New-Object System.Management.Automation.PSCredential -ArgumentList $username, $secureStringPwd
+Connect-AzAccount -Credential $creds
 
 
 $AllVMs = @()
@@ -37,7 +45,13 @@ foreach ($Sub in $subscriptions) {
             $log.OperationName
             if ($null -eq $logs ) {
                 Write-Host $VM.Name 'lock today'
-                $lockvms += $vm 
+                $lockvms += $vm
+                # New-AzResourceLock -LockName DeleteLock `
+                # -LockLevel CanNotDelete `
+                # -ResourceGroupName $vm.ResourceGroupName `
+                # -ResourceName $vm.Name `
+                # -ResourceType Microsoft.Network/virtualNetworks `
+                # -Force
             }
             else {
                 Write-Host $vm.Name 'dont Lock'
@@ -53,3 +67,5 @@ $logs = Get-AzActivityLog -ResourceId /subscriptions/759b9007-97f8-4a5c-abff-224
 | Where-Object { $_.OperationName.value -eq 'Microsoft.Authorization/locks/delete' -and ($_.Status.Value -eq 'Succeeded') }
 
 # $logs.OperationName
+
+New-AzResourceLock -LockLevel $vm.ResourceGroupName
