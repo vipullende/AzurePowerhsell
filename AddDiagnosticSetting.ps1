@@ -1,5 +1,5 @@
 
-$WorkspaceId = '/subscriptions/3a962b01-218b-4afe-aaa6-aa403d44d61c/resourcegroups/rg_infssub_p_snt_eastus/providers/microsoft.operationalinsights/workspaces/log-infssub-p-snt-eastus-001'
+$WorkspaceId = 'resource ID'
 
 $subs = Get-AzSubscription | Where-Object Name -like 'production' 
 foreach ($sub in $subs) {
