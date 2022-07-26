@@ -1,7 +1,7 @@
 
 $WorkspaceId = 'id'
 
-$subs = Get-AzSubscription  | Where-Object Name -like 'non-prod'
+$subs = Get-AzSubscription  #| Where-Object Name -like 'CONA POC'
 foreach ($sub in $subs) {
 	select-AzSubscription -Subscription $sub.Name  
 	$kvs = Get-AzResource | Where-Object { ($_.ResourceType -Like 'Microsoft.Network/applicationGateways' -or $_.ResourceType -Like 'Microsoft.KeyVault/vaults' -or $_.ResourceType -like 'Microsoft.Network/virtualNetworks'`
@@ -9,11 +9,14 @@ foreach ($sub in $subs) {
 				-or $_.resourceType -like 'Microsoft.DataFactory/factories') }
 	foreach ($kv in $kvs) {
 		$DiagnosticSettingName = 'diag' + '-' + $kv.name
-		$DiagnosticSettingName
+		
 		$diags = Get-AzDiagnosticSetting -ResourceId $kv.ResourceId
-		if (-not ($diags.WorkspaceId -contains $WorkspaceId)) {
-			write-host 'ok do it'
+		if ($diags.WorkspaceId -contains $WorkspaceId) {
+			write-host 'dont do it'
+		}
+		else {
+			write-host 'ok dooooo it for ' $kv.name
 			Set-AzDiagnosticSetting -ResourceId $kv.ResourceId -WorkspaceId $WorkspaceId -EnableLog $true -Name $DiagnosticSettingName
 		}
 	}	
-	}
+}
