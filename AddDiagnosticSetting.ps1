@@ -16,7 +16,7 @@ foreach ($sub in $subs) {
 		}
 		else {
 			write-host 'ok dooooo it for ' $kv.name
-			Set-AzDiagnosticSetting -ResourceId $kv.ResourceId -WorkspaceId $WorkspaceId -EnableLog $true -Name $DiagnosticSettingName
+			#Set-AzDiagnosticSetting -ResourceId $kv.ResourceId -WorkspaceId $WorkspaceId -EnableLog $true -Name $DiagnosticSettingName
 		}
 	}	
 }
