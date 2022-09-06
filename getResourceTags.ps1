@@ -36,7 +36,7 @@ $arraydata += $Report
 
 }
 
-$arrayData #| Export-Csv -NoTypeInformation C:\vipul\Cona\ResourceName_Tags.csv
+$arrayData 
 
  
 
