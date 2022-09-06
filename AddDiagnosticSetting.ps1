@@ -1,7 +1,7 @@
 
 $WorkspaceId = 'id'
 
-$subs = Get-AzSubscription  #| Where-Object Name -like 'CONA POC'
+$subs = Get-AzSubscription  
 foreach ($sub in $subs) {
 	select-AzSubscription -Subscription $sub.Name  
 	$kvs = Get-AzResource | Where-Object { ($_.ResourceType -Like 'Microsoft.Network/applicationGateways' -or $_.ResourceType -Like 'Microsoft.KeyVault/vaults' -or $_.ResourceType -like 'Microsoft.Network/virtualNetworks'`
