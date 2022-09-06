@@ -36,7 +36,7 @@ foreach ($Subscription in $Subscriptions) {
         $StorageUsageReport += $Report
     }
 }
-$StorageUsageReport | Sort-Object -Property  "Used Capacity in GB" -Descending | Export-Csv -NoTypeInformation c:\vipul\data\storageaccountusage21102021.csv
+$StorageUsageReport | Sort-Object -Property  "Used Capacity in GB" -Descending | Export-Csv -NoTypeInformation .\storageaccountusage21102021.csv
 #| ConvertTo-Html -Head $css -Body "<h1>Storage Account Usage. </h5>`n<h5>Generated on $(Get-Date)</h5>" | Out-File ./Azure_StorageAccount_Usage.html
 
 #[math]::Round($UsedCapacity.Data.Average / 1Gb)
