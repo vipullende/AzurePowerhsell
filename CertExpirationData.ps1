@@ -16,7 +16,6 @@ Connect-AzAccount -Credential $creds #>
 ##E-Mail Details
 $smtp = "xx.xxxxx.com"
 $from = "xxxx@xxxxx.com"
-#$to = "naazurecloudadmins.in@capgemini.com"
 $to = "xxx@xxx.com"
 $cc = "xxx@xxx.com"
 
