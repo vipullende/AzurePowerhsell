@@ -61,11 +61,3 @@ foreach ($Sub in $subscriptions) {
         }  
     }
 }
-
-# Get-AzResourceLock  -ResourceType "Microsoft.Compute/virtualMachines" -ResourceGroupName rg_prmcld_performance  -ResourceName allpcltest001
-$logs = Get-AzActivityLog -ResourceId /subscriptions/759b9007-97f8-4a5c-abff-224a1c0b26f1/resourceGroups/rg_prmcld_performance/providers/Microsoft.Compute/virtualMachines/allpcltest001 -StartTime (get-date).AddDays(-$DaysAgo) `
-| Where-Object { $_.OperationName.value -eq 'Microsoft.Authorization/locks/delete' -and ($_.Status.Value -eq 'Succeeded') }
-
-# $logs.OperationName
-
-New-AzResourceLock -LockLevel $vm.ResourceGroupName
