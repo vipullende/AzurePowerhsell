@@ -15,4 +15,3 @@ foreach ($Sub in $subs) {
         }
     }
 }
-$snapShotsToBedeleted.CreationData[0]
