@@ -50,7 +50,7 @@ foreach ($Sub in $subscriptions) {
                     -LockLevel CanNotDelete `
                     -ResourceGroupName $vm.ResourceGroupName `
                     -ResourceName $vm.Name `
-                    -ResourceType Microsoft.Network/virtualNetworks `
+                    -ResourceType Microsoft.Compute/virtualMachines `
                     -Force
             }
             else {
