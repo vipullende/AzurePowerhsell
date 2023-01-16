@@ -3,7 +3,7 @@ $stg = @()
 $arraydata = @()
 $BulkIP =""
 $i = 0
-$allowedIPAddress = @('161.162.174.164', '161.162.158.164', '20.185.96.41')
+$allowedIPAddress = @('1.16.174.16', '1.16.18.164', '20.18.9.41')
 
 foreach ($sub in $subs) {
     select-AzSubscription -Subscription $sub.Name 
