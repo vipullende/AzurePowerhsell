@@ -36,7 +36,7 @@ tr:nth-child(odd) { background: #b8d1f3; }
 
 $certinfo = @()
 $Certtobexpired = @()
-$list_subscription = Get-AzSubscription
+$list_subscription = Get-AzSubscription  |  Where-Object Name -notlike Access* 
 foreach ($subscription in $list_subscription) {
     Set-AzContext -Subscription $subscription.Name
     $accesstoken = Get-AzAccessToken
