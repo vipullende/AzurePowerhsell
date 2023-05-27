@@ -22,13 +22,10 @@ foreach ($sub in $subs) {
                     $Report = ' ' | Select StorageAccountName, NotallowedIP, IPRegion, IPCountry, Organization
                     $Report.StorageAccountName += $accountName.StorageAccountName
                     $IPGeolocation = Invoke-RestMethod -Method Get -Uri "https://ipapi.co/$notallowed/json/"
-                   
-                    
                     $Report.NotallowedIP += $notallowed
                     $Report.IPRegion = $IPGeolocation.region
                     $Report.IPCountry = $IPGeolocation.country_name
                     $Report.organization = $IPGeolocation.org
-
                     $arraydata += $Report 
 
                     # Remove-AzStorageAccountNetworkRule -ResourceGroupName $accountName.ResourceGroupName`

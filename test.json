@@ -1,0 +1,71 @@
+{
+    "schemaId": "azureMonitorCommonAlertSchema",
+    "data": {
+        "essentials": {
+            "alertId": "/subscriptions/a96e49c9-c03d-4ead-adc8-069ffcbc3b29/providers/Microsoft.AlertsManagement/alerts/7ac68372-2165-41a6-a18a-d1b1af3c2b79",
+            "alertRule": "test-prmcld-appi_sandsub_s_mon_westus2_001",
+            "severity": "Sev1",
+            "signalType": "Metric",
+            "monitorCondition": "Fired",
+            "monitoringService": "Platform",
+            "alertTargetIDs": [
+                "/subscriptions/a96e49c9-c03d-4ead-adc8-069ffcbc3b29/resourcegroups/rg_sandsub_s_mon_westus2/providers/microsoft.insights/components/appi_sandsub_s_mon_westus2_001"
+            ],
+            "configurationItems": [
+                "appi_sandsub_s_mon_westus2_001"
+            ],
+            "originAlertId": "a96e49c9-c03d-4ead-adc8-069ffcbc3b29_rg_sandsub_s_mon_westus2_microsoft.insights_metricalerts_test-prmcld-appi_sandsub_s_mon_westus2_001_-2053840574",
+            "firedDateTime": "2023-01-17T09:18:22.8017858Z",
+            "resolvedDateTime" : "2023-01-17T09:18:22.8018858Z",
+            "description": "Automatically created alert rule for availability test \"test-prmcld-appi_sandsub_s_mon_westus2_001\"",
+            "essentialsVersion": "1.0",
+            "alertContextVersion": "1.0"
+        },
+        "alertContext": {
+            "properties": {
+                "assignmentGroup": "ABCD",
+                "mycustomeproperties":"XYZ",
+                "title": "Unavailable Backends",
+                "details": "One or more of your Cdn profiles backends are responding with errors to health probes. The backends associated with this Cdn profile are not responding to health probes with the expected status.",
+                "currentHealthStatus": "Unavailable",
+                "previousHealthStatus": "Unavailable",
+                "type": "Downtime",
+                "cause": "PlatformInitiated"                
+            },
+            "conditionType": "WebtestLocationAvailabilityCriteria",
+            "condition": {
+                "windowSize": "PT5M",
+                "allOf": [
+                    {
+                        "metricName": "Failed Location",
+                        "metricNamespace": null,
+                        "operator": "GreaterThan",
+                        "threshold": "2",
+                        "timeAggregation": "Sum",
+                        "dimensions": [
+                            {
+                                "name": "Disk",
+                                "value": "/"
+                            },
+                            {
+                                "name": "_ResourceId",
+                                "value": "/subscriptions/3a8d651a-33d8-46be-89b8-8cf0436d27dd/resourcegroups/rg_prodsub_ldr_pcl_eastus/providers/microsoft.compute/virtualmachines/alldrpcl003"
+                            }
+                        ],
+                        "metricValue": 5,
+                        "webTestName": "test-prmcld-appi_sandsub_s_mon_westus2_001"
+                    }
+                ],
+                "windowStartTime": "2023-01-17T09:10:17.74Z",
+                "windowEndTime": "2023-01-17T09:15:17.74Z"
+            }
+        },
+        "customProperties": {
+            "AssignmentGroup": "ABCD"
+        }
+    }
+}
+
+77f382fe6ff80300e906841dba3ee458
+
+correlation_id=test-prmcld-appi_sandsub_s_mon_westus2_001^state=1^ORstate=9^ORstate=2^ORstate=-13

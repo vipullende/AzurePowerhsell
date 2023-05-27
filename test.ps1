@@ -1,14 +1,10 @@
-﻿$AllVMs = Get-AzVM | Where-Object ResourceGroupName -notlike DATABRICKS* 
-    foreach ($VM in $AllVMs) {
-        $lock = Get-AzResourceLock  -ResourceType 'Microsoft.Compute/virtualMachines' -ResourceGroupName $vm.ResourceGroupName  -ResourceName $VM.Name
-        if ($lock) {
-            # Remove-AzResourceLock -LockName DeleteLock `
-            # -ResourceGroupName $vm.ResourceGroupName `
-            # -ResourceType 'Microsoft.Compute/virtualMachines'
-            # -ResourceName $vm.Id
+﻿$WorkspaceId = '/subscriptions/3a962b01-218b-4afe-aaa6-aa403d44d61c/resourcegroups/rg_infssub_p_snt_eastus/providers/microsoft.operationalinsights/workspaces/log-infssub-p-snt-eastus-001'
 
-            Remove-AzResourceLock -LockName 'DeleteLock' -ResourceGroupName $vm.ResourceGroupName -ResourceName $vm.Id  -ResourceType 'Microsoft.Compute/virtualMachines' -Force
-        }
-    }
+Select-AzSubscription -Subscription "non-prod"
+$logicapps = Get-AzEventHubNamespace | Where-Object Name -Like *pac* 
+foreach($logicapp in $logicapps){
+    $DiagnosticSettingName = 'diag' + '-' + $logicapp.Id.split('/')[-1]
+    $DiagnosticSettingName 
 
-    
+Set-AzDiagnosticSetting -ResourceId $logicapp.Id -WorkspaceId $WorkspaceId -EnableLog $true  -EnableMetrics $true -Name $DiagnosticSettingName
+}
