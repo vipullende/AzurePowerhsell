@@ -27,7 +27,7 @@ foreach ($sub in $subs){
         foreach($wvm in $wvms){
             #az vm update -g $vm.myResourceGroup -n $vm.Name --license-type SLES_BYOS
             $wvm.LicenseType = "Windows_Server"
-            Update-AzVM -ResourceGroupName $wvm.ResourceGroupName -VM $wwvm
+            Update-AzVM -ResourceGroupName $wvm.ResourceGroupName -VM $wvm
         }
     }else {
         Write-Output "Hurry Nothing to Update for 'Azure Hybrid Benefit'"
