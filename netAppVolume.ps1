@@ -16,7 +16,6 @@ foreach ($subscription in $subscriptions) {
 
             foreach ($Volume in $Volumes) {
                 $dataMetricsLogicalSpaceFile = (Get-AzMetric -ResourceId $Volume.Id -MetricName 'VolumeLogicalSize' -AggregationType Average).Data
-
                 $info = '' | Select-Object NetAppName, VolumeName, QuotaGB, UsedQuotaGB, UsedQuotaPercent
                 $Info.NetAppName = $Volume.name.split('/')[0]
                 $info.VolumeName = $Volume.name.split('/')[-1]
@@ -29,3 +28,6 @@ foreach ($subscription in $subscriptions) {
     }
 }
 $report | Export-Csv  -NoTypeInformation ./NetAppVolumes.csv
+
+
+Get-AzNetAppFilesSnapshot -ResourceGroupName  rg_nonpsub_t_sap_s4h_wkz_westus2  -acc

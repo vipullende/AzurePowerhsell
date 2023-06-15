@@ -3,14 +3,14 @@
 ######################################################################
 $arrayData = @()
 
-$resources = Get-AzResource  
+$resources = Get-AzResourceGroup     
 
 
 
 foreach($resource in $resources)
 {
 $ResourceName = $resource.name 
-$ResourceTag = $resource.Tags 
+$ResourceTag = $resource.Tags.ApplicationName
 $ResourceType = $resource.Type
 $ResourceGroup = $resource.ResourceGroupName
 $ResourceID = $resource.Id
@@ -21,6 +21,7 @@ foreach($TagDictionary in $ResourceTag)
 {
      foreach($Key in $TagDictionary.Keys)
      {
+     
         $Tagdata += $Key + ":" + $($TagDictionary[$key]) + ","
      }    
 }

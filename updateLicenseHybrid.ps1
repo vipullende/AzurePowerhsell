@@ -33,4 +33,17 @@ foreach ($sub in $subs){
         Write-Output "Hurry Nothing to Update for 'Azure Hybrid Benefit'"
     }
 
+    ##################SQL virtual machine
+    $svms = Get-AzSqlVM| where {( $_.LicenseType -notlike "AHUB" )}
+
+    if($svms.count -gt 0){
+        foreach($svm in $svms){
+            #az vm update -g $vm.myResourceGroup -n $vm.Name --license-type SLES_BYOS
+            $svm.LicenseType = "AHUB"
+            Update-AzVM -ResourceGroupName $svm.ResourceGroupName -VM $svm
+        }
+    }else {
+        Write-Output "Hurry Nothing to Update for 'Azure Hybrid Benefit'"
+    }
+
 }

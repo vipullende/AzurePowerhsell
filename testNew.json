@@ -1,0 +1,9 @@
+{
+    "Incident":@{body('Create_Record_2')?['result']?['number']},
+    "alertrule":@{triggerBody()?['data']?['essentials']?['alertRule']},
+    "ciname":@{variables('ciname')},    
+    "status":"new",
+    "resourcetype":@{items('For_each_6')?['metricNamespace']},
+    "assignmentgroup":@{body('Create_Record_2')?['result']?['assignment_group']},
+    "assignedto":@{body('Create_Record_2')?['result']?['assigned_to']}
+    }

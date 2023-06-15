@@ -1,10 +1,17 @@
-﻿$WorkspaceId = '/subscriptions/3a962b01-218b-4afe-aaa6-aa403d44d61c/resourcegroups/rg_infssub_p_snt_eastus/providers/microsoft.operationalinsights/workspaces/log-infssub-p-snt-eastus-001'
-
-Select-AzSubscription -Subscription "non-prod"
-$logicapps = Get-AzEventHubNamespace | Where-Object Name -Like *pac* 
-foreach($logicapp in $logicapps){
-    $DiagnosticSettingName = 'diag' + '-' + $logicapp.Id.split('/')[-1]
-    $DiagnosticSettingName 
-
-Set-AzDiagnosticSetting -ResourceId $logicapp.Id -WorkspaceId $WorkspaceId -EnableLog $true  -EnableMetrics $true -Name $DiagnosticSettingName
+﻿ 
+$data = @()  
+$Report =@()
+$list_subscription = Get-AzSubscription  |  Where-Object Name -notlike Access* 
+foreach($subscription in $list_subscription){
+    select-AzSubscription -Subscription $subscription
+    $rgs = Get-AzResourceGroup  
+foreach($rg in $rgs){
+    $data = " " | Select ResourceGroupName , ApplicationNameTag, Subscription
+    $data.ResourceGroupName = $rg.ResourceGroupName
+    $data.ApplicationNameTag = $rg.Tags.ApplicationName 
+    $data.Subscription = $subscription.name
+    $data
+    $Report += $data
 }
+}
+$Report | Export-Csv -NoTypeInformation RG_ApplicationNameTag.csv
